@@ -13,7 +13,7 @@ const mongoConfig = {
 }
 @Module({
     imports: [
-        MongooseModule.forRoot(mongoConfig as any),
+        MongooseModule.forRoot(genMongoUrl(mongoConfig)),
         WechatModule],
     controllers: [],
     providers: [],
