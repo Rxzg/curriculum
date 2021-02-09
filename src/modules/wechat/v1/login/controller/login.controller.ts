@@ -2,7 +2,7 @@ import {Body, Controller, Get, Post, HttpService, Response} from "@nestjs/common
 import {LoginService} from "../services/login.service";
 import {AuthService} from "../../../../../common/services/verify/auth.service";
 import {UserService} from "../../../../../common/services/user/user.service";
-const weChatApp = require('../../../../../../../config/wechatAppId.json');
+// const weChatApp = require('../../../../../../../config/wechatAppId.json');
 
 @Controller('wechat/login')
 export class LoginController {
