@@ -415,6 +415,27 @@
         code: 1;
     }
 ```
+<h3 id="17.1">纪念日置顶</h3>
+```js
+    # 方法/路径
+    PUT  /v1/wechat/anniversary/placedTop
+
+    # 格式
+    Content-Type / "application/json"
+    
+    # 请求包
+    {
+        # 纪念日ID
+        id: string;
+    }
+
+    # 返回包
+    200/OK 
+    {
+        #状态码
+        code: 1;
+    }
+```
 <h2 id="18">数据表</h2>
 <h3 id="19">用户/User</h3>
 ```js
