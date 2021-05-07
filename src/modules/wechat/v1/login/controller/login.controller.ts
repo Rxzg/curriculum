@@ -2,7 +2,7 @@ import {Body, Controller, Get, Post, HttpService, Response} from "@nestjs/common
 import {LoginService} from "../services/login.service";
 import {AuthService} from "../../../../../common/services/verify/auth.service";
 import {UserService} from "../../../../../common/services/user/user.service";
-// const weChatApp = require('../../../../../../../config/wechatAppId.json');
+import weChatApp from '../../../../../common/constants/wechatAppInfo';
 
 @Controller('wechat/login')
 export class LoginController {
@@ -21,12 +21,11 @@ export class LoginController {
     async login(@Body() {code, nickname}: {code: string, nickname: string}, @Response() res) {
 
         // 请求获取唯一id
-        // const url = `https://api.weixin.qq.com/sns/jscode2session?appid=${weChatApp.id}&secret=${weChatApp.secret}&js_code=${code}&grant_type=authorization_code`;
-        // const result: any = (await this.httpService.get(url).toPromise()).data;
-        const result = {openid: '222222', session_key: '234r243'};
+        const url = `https://api.weixin.qq.com/sns/jscode2session?appid=${weChatApp.id}&secret=${weChatApp.secret}&js_code=${code}&grant_type=authorization_code`;
+        const result: any = (await this.httpService.get(url).toPromise()).data;
 
         if (!result.openid) {
-            return {code: 500, message: '登录失败'};
+            return res.send({code: 500, message: '登录失败'});
         }
 
         let user = await this.userService.getUserByOpenid(result.openid);
@@ -45,7 +44,5 @@ export class LoginController {
         // 设置token
         res.cookie('token', token);
         return res.send({user, session_key: result.session_key});
-
-        // return {user, session_key: result.session_key};
     }
 }
