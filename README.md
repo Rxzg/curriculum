@@ -141,7 +141,7 @@
 <h3 id="5">获取一周课程</h3>
 ```js
     # 方法/路径
-    GET  /v1/wechat/course/weeklyCurriculum?"startTime=<开始时间>":
+    GET  /v1/wechat/course/weeklyCurriculum?"startTime=<开始时间>&endTime=<结束时间>":
 
 
     # 返回包

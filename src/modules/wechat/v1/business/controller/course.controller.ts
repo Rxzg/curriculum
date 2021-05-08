@@ -71,10 +71,10 @@ export class CourseController {
     }
 
     @Get('weeklyCurriculum')
-    async getWeeklyCurriculum(@Query() {openid, startTime}: {openid: string, startTime: string}) {
+    async getWeeklyCurriculum(@Query() {openid, startTime, endTime}: {openid: string, startTime: string, endTime: string}) {
         try {
             const start = parseInt(startTime as string);
-            const end = start + (7 * 24 * 60 * 60 * 1000);
+            const end = parseInt(endTime as string);
             this.logger.warn(`开始时间: ${start}, 结束时间: ${end}`);
             return {code: 1, curriculum: await this.courseService.getWeeklyCurriculum(openid, start, end)};
         } catch (e) {
