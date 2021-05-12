@@ -8,13 +8,15 @@ import {MemorandumModule} from "../../../../common/services/memorandum/memorandu
 import {MemorandumController} from "./controller/memorandum.controller";
 import {BillController} from "./controller/bill.controller";
 import {AnniversaryController} from "./controller/aniversary.controller";
+import {StudentModule} from "../../../../common/services/student/student.module";
+import {StudentController} from "./controller/student.controller";
 
 /**
  * 后台登录模块
  */
 @Module({
-    imports: [UserModule, HttpModule, CourseModule, BillModule, AnniversaryModule, MemorandumModule],
-    controllers: [CourseController, MemorandumController, BillController, AnniversaryController, MemorandumController],
+    imports: [UserModule, HttpModule, CourseModule, BillModule, AnniversaryModule, MemorandumModule, StudentModule],
+    controllers: [CourseController, MemorandumController, BillController, AnniversaryController, MemorandumController, StudentController],
     providers: [],
 })
 export class BusinessModule {

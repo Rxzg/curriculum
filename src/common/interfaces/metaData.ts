@@ -118,3 +118,25 @@ export interface IAnniversary {
     // 最后修改时间
     updateTime?: number;
 }
+
+/**
+ * 学生
+ */
+export interface IStudent {
+    _id?: string;
+
+    // 学生名字
+    name: string;
+
+    // 学号
+    studentID: string;
+
+    // 添加人di
+    openid: string;
+
+    // 创建时间
+    createTime?: number;
+
+    // 最后修改时间
+    updateTime?: number;
+}

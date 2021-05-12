@@ -10,6 +10,8 @@ import {AnniversaryDao} from "./dao/anniversary.dao";
 import {MemorandumDao} from "./dao/memorandum.dao";
 import {BillDao} from "./dao/bill.dao";
 import {CourseDao} from "./dao/course.dao";
+import {StudentSchema} from "./schemas/student.schema";
+import {StudentDao} from "./dao/student.dao";
 
 /**
  * DAO模块
@@ -22,6 +24,7 @@ import {CourseDao} from "./dao/course.dao";
             {name: 'anniversary', schema: AnniversarySchema},
             {name: 'memorandum', schema: MemorandumSchema},
             {name: 'bill', schema: BillSchema},
+            {name: 'student', schema: StudentSchema},
             ])
     ],
     providers: [
@@ -29,14 +32,17 @@ import {CourseDao} from "./dao/course.dao";
         AnniversaryDao,
         MemorandumDao,
         BillDao,
-        CourseDao
+        CourseDao,
+        StudentDao
+
     ],
     exports: [
         UserDao,
         AnniversaryDao,
         MemorandumDao,
         BillDao,
-        CourseDao
+        CourseDao,
+        StudentDao
     ],
 })
 export class DaoModule {
