@@ -50,7 +50,7 @@ export interface IMemorandum {
 export interface ICourse {
     _id?: string;
 
-    // 老师名字
+    // 学生名字
     name: string;
 
     // 微信唯一id
@@ -65,8 +65,8 @@ export interface ICourse {
     // 课程时长
     duration: number;
 
-    // 学生列表
-    students?: string[];
+    // 学号
+    studentID?: string;
 
     // 创建时间
     createTime?: number;

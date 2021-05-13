@@ -7,7 +7,7 @@ import {ICourse} from "../../common/interfaces/metaData";
  */
 @Schema()
 export class Course extends Document implements ICourse{
-    // 老师名字
+    // 学生名字
     @Prop()
     name: string;
 
@@ -23,9 +23,9 @@ export class Course extends Document implements ICourse{
     @Prop()
     endTime: number;
 
-    // 学生列表
+    // 学号
     @Prop()
-    students: string[];
+    studentID: string;
 
     // 课程时长
     @Prop()

@@ -18,12 +18,13 @@ export class CourseController {
      * @param startTime 开始时间
      * @param endTime 结束时间
      * @param duration 时长
+     * @param studentID 学号
      */
     @Post()
-    async addCourse(@Body() {user, name, startTime, endTime, duration}:
-                            {user: IUser, name: string, startTime: number, endTime: number, duration: number}) {
+    async addCourse(@Body() {user, name, startTime, endTime, duration, studentID}:
+                            {user: IUser, name: string, startTime: number, endTime: number, duration: number, studentID: string}) {
         try {
-            const course = await this.courseService.createCourse({name, startTime, endTime, duration, openid: user.openid});
+            const course = await this.courseService.createCourse({name, startTime, endTime, duration, openid: user.openid, studentID});
 
             return {code: 1, id: course._id};
         } catch (e) {
@@ -31,46 +32,6 @@ export class CourseController {
             return {code: 2, message: '添加课程失败'};
         }
     }
-
-    /**
-     * 给课程添加一个学生
-     * @param user 用户
-     * @param id 课程id
-     * @param studentID 学号
-     */
-    @Post('/addStudent')
-    async addStudent(@Body() {user, id, studentID}:
-                        {user: IUser, id: string, studentID: string}) {
-        try {
-            const course = await this.courseService.getCourse(id);
-
-            if (!course) {
-                return {code: 2, message: '传入课程id不正确'};
-            }
-
-            const student = await this.studentService.getStudentByStudentID(studentID);
-
-            if (!student) {
-                return {code: 2, message: '没有该学号的学生'};
-            }
-
-            let students = [];
-            if (course.students.length > 0) {
-                students = await Promise.all(course.students.map(sid => this.studentService.getStudentByStudentID(sid)));
-            }
-
-            students.push(student);
-
-            course.students.push(studentID);
-            await this.courseService.updateCourse(id, {students: course.students} as ICourse);
-
-            return {code: 1, students};
-        } catch (e) {
-            this.logger.error(`${JSON.stringify(e)}`);
-            return {code: 2, message: '添加课程失败'};
-        }
-    }
-
 
     /**
      * 修改一个课程

@@ -7,7 +7,6 @@
     *    1.2 [添加课程](#2)
     *    1.3 [修改课程](#3)
     *    1.4 [删除课程](#4)
-    *    1.4 [添加课程学生](#5.1)
     *    1.5 [获取一周课程](#5)
     *    1.6 [添加账单](#6)
     *    1.7 [获取账单](#7)
@@ -84,6 +83,8 @@
         endTime: number;
         # 时长
         duration: number;
+        # 学号
+        studentID: string;
     }
 
     # 返回包
@@ -158,28 +159,6 @@
         code: 1;
         # 课程数组
         curriculum:[...Course];
-    }
-```
-<h3 id="5.1">添加课程学生</h3>
-```js
-    # 方法/路径
-    POST  /v1/wechat/course/addStudent;
-
-    # 请求包
-    {
-        # 课程id
-        id: string;
-        # 学号
-        studentID: string;
-    }
-
-    # 返回包
-    200/OK 
-    {
-        #状态码
-        code: 1;
-        # 当前课程拥有学生
-        students: [Student];
     }
 ```
 

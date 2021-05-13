@@ -16,7 +16,6 @@ export class CourseService {
      * @param course
      */
     async createCourse(course: ICourse) {
-        course.students = [];
         return await this.courseDao.crate(course);
     }
 
