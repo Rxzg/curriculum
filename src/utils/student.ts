@@ -5,7 +5,7 @@ export function genStudentID() {
     const date = new Date(Date.now());
 
     const year = date.getUTCFullYear().toString().slice(2);
-    let month = date.getMonth().toString();
+    let month = (date.getMonth() + 1).toString();
 
     if (month.length === 1) {
         month = '0' + month;
