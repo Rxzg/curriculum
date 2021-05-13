@@ -33,14 +33,14 @@ export class StudentController {
             }
 
 
-            await this.studentService.create({
+            const _student = await this.studentService.create({
                 studentID: studentID,
                 name: student.name,
                 openid: user.openid,
                 englishName: student.englishName
             });
 
-            return {code: 1};
+            return {code: 1, student: _student};
         } catch (e) {
             this.logger.error(`${JSON.stringify(e)}`);
             return {code: 2, message: '添加一个学生失败'};

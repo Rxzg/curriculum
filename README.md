@@ -453,8 +453,8 @@
     {
         # 名字
         name: string;
-        # 学号
-        studentID: string;
+        # 英文名
+        englishName: string;
     }
 
     # 返回包
@@ -462,6 +462,8 @@
     {
         #状态码
         code: 1;
+        #学生
+        student: Student;
     }
 ```
 <h3 id="24.2">查找一个学生</h3>
@@ -623,6 +625,8 @@
         openid: string;
         # 学生名字
         name: string;
+        # 英文名
+        englishName: string;
         # 学号
         studentID: string;
         # 创建时间
