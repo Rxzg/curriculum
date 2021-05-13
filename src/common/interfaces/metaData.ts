@@ -65,6 +65,9 @@ export interface ICourse {
     // 课程时长
     duration: number;
 
+    // 学生列表
+    students?: string[];
+
     // 创建时间
     createTime?: number;
 

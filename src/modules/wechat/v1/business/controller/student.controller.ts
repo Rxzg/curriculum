@@ -69,6 +69,28 @@ export class StudentController {
     }
 
     /**
+     * 获取一页学生
+     * @param openid
+     * @param studentID
+     */
+    @Get('/more')
+    async getStudents(@Query() {openid, page} : {openid: string, page: string}) {
+        try {
+            let p = parseInt(page);
+            if (typeof p !== 'number' || p < 1) {
+                return {code: 2, message: 'page 参数错误'};
+            }
+
+            const {students, count} = await this.studentService.getStudents(openid, p, 20);
+
+            return {code: 1, students, count};
+        } catch (e) {
+            this.logger.error(`${JSON.stringify(e)}`);
+            return {code: 2, message: '获取一页学生失败'};
+        }
+    }
+
+    /**
      * 修改一个学生
      * @param user
      * @param student

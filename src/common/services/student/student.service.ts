@@ -58,12 +58,13 @@ export class StudentService {
      * 获取一些学生
      * @param pageNum
      * @param pageCount
+     * @param openid 老师的openid
      */
-    async getStudents(pageNum: number, pageCount: number) {
-        const accounts = await this.studentDao.getOnePageAccount({}, pageCount, pageNum);
-        const count = 0
+    async getStudents(openid: string, pageNum: number, pageCount: number) {
+        const students = await this.studentDao.getOnePageAccount({openid}, pageCount, pageNum);
+        const count = await this.studentDao.getStudentsCount({openid});
 
         // 所有数据
-        return {accounts, count};
+        return {students, count};
     }
 }

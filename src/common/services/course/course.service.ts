@@ -16,7 +16,16 @@ export class CourseService {
      * @param course
      */
     async createCourse(course: ICourse) {
+        course.students = [];
         return await this.courseDao.crate(course);
+    }
+
+    /**
+     * 获取一个课程
+     * @param id
+     */
+    async getCourse(id: string) {
+        return await this.courseDao.findOneById(id);
     }
 
     /**

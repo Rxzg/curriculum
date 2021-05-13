@@ -25,6 +25,7 @@
     *    1.19 [查找学生](#24.2)
     *    1.20 [修改学生](#24.3)
     *    1.21 [删除学生](#24.4)
+    *    1.21 [获取一页学生](#24.5)
 *   2.[数据表](#18)
     *    2.1 [用户/User](#19)
     *    2.2 [课程/Course](#20)
@@ -158,6 +159,29 @@
         curriculum:[...Course];
     }
 ```
+<h3 id="5.1">添加学会生</h3>
+```js
+    # 方法/路径
+    POST  /v1/wechat/course/addStudent;
+
+    # 请求包
+    {
+        # 课程id
+        id: string;
+        # 学号
+        studentID: string;
+    }
+
+    # 返回包
+    200/OK 
+    {
+        #状态码
+        code: 1;
+        # 当前课程拥有学生
+        students: [Student];
+    }
+```
+
 <h3 id="6">添加账单</h3>
 ```js
     # 方法/路径
@@ -524,6 +548,21 @@
         code: 1;
     }
 ```
+<h3 id="24.5">获取一页学生</h3>
+```js
+    # 方法/路径
+    PUT  /v1/wechat/student/more?"page=<第几页>":
+
+    # 返回包
+    200/OK 
+    {
+        # 状态码
+        code: 1;
+        students: [Students];
+        count: number;
+    }
+```
+
 <h2 id="18">数据表</h2>
 <h3 id="19">用户/User</h3>
 ```js

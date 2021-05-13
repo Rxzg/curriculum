@@ -78,7 +78,7 @@ export class StudentDao extends MongoDao{
      * 获取账户的数量
      * @param where
      */
-    getStudentsCount(where: {[key in keyof IStudent]: any}) {
+    getStudentsCount(where: {[key in keyof IStudent]: any} | {}) {
         return this.model.find(where).countDocuments();
     }
 }

@@ -23,6 +23,10 @@ export class Course extends Document implements ICourse{
     @Prop()
     endTime: number;
 
+    // 学生列表
+    @Prop()
+    students: string[];
+
     // 课程时长
     @Prop()
     duration: number;
