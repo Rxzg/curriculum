@@ -21,12 +21,17 @@
     *    1.15 [获取多个纪念日](#15)
     *    1.16 [修改纪念日](#16)
     *    1.17 [删除纪念日](#17)
+    *    1.18 [添加学生](#24.1)
+    *    1.19 [查找学生](#24.2)
+    *    1.20 [修改学生](#24.3)
+    *    1.21 [删除学生](#24.4)
 *   2.[数据表](#18)
     *    2.1 [用户/User](#19)
     *    2.2 [课程/Course](#20)
     *    2.3 [账单/Bill](#21)
     *    2.4 [备忘录/Memorandum](#22)
     *    2.5 [纪念日/Anniversary](#23)
+    *    2.6 [学生/Student](#24)
 
 
 <h2 id="0">主要接口说明</h2>
@@ -436,6 +441,87 @@
         code: 1;
     }
 ```
+<h3 id="24.1">添加学生</h3>
+```js
+    # 方法/路径
+    POST  /v1/wechat/student
+
+    # 格式
+    Content-Type / "application/json"
+    
+    # 请求包
+    {
+        # 名字
+        name: string;
+        # 学号
+        studentID: string;
+    }
+
+    # 返回包
+    200/OK 
+    {
+        #状态码
+        code: 1;
+    }
+```
+<h3 id="24.2">查找一个学生</h3>
+```js
+    # 方法/路径
+    GET  /v1/wechat/student?"studentID=<学号>":
+
+    # 返回包
+    200/OK 
+    {
+        # 状态码
+        code: 1;
+        # 学生
+        student: Student;
+    }
+```
+<h3 id="24.3">修改学生</h3>
+```js
+    # 方法/路径
+    PUT  /v1/wechat/student
+
+    # 格式
+    Content-Type / "application/json"
+    
+    # 请求包
+    {
+        # 名字
+        name: string;
+        # 学生
+        student: Student;
+    }
+
+    # 返回包
+    200/OK 
+    {
+        # 状态码
+        code: 1;
+    }
+```
+<h3 id="24.4">删除学生</h3>
+```js
+    # 方法/路径
+    DELETE  /v1/wechat/student
+
+    # 格式
+    Content-Type / "application/json"
+    
+    # 请求包
+    {
+        # 学号
+        studentID: string;
+    }
+
+    # 返回包
+    200/OK 
+    {
+        # 状态码
+        code: 1;
+    }
+```
 <h2 id="18">数据表</h2>
 <h3 id="19">用户/User</h3>
 ```js
@@ -522,6 +608,23 @@
         date: number;
         # 类别
         type: number;
+        # 创建时间
+        createTime: number;
+        # 修改时间
+        updateTime: number;
+    }
+```
+<h3 id="24">学生/Student</h3>
+```js
+    {
+        # 唯一id
+        id: string;
+        # 创建人id
+        openid: string;
+        # 学生名字
+        name: string;
+        # 学号
+        studentID: string;
         # 创建时间
         createTime: number;
         # 修改时间
