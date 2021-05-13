@@ -10,7 +10,7 @@ interface StudentDto {
 }
 
 @Controller('/wechat/student')
-// @UseGuards(WeChatAuthGuard)
+@UseGuards(WeChatAuthGuard)
 export class StudentController {
     logger: Logger = new Logger(StudentController.name);
     constructor(private studentService: StudentService) {
