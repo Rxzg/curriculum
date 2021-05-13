@@ -128,6 +128,9 @@ export interface IStudent {
     // 学生名字
     name: string;
 
+    // 英文名字
+    englishName: string;
+
     // 学号
     studentID: string;
 

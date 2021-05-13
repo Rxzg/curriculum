@@ -15,6 +15,10 @@ export class Student extends Document implements IStudent{
     @Prop()
     studentID: string;
 
+    // 英文名
+    @Prop()
+    englishName: string;
+
     // 创建人id
     @Prop()
     openid: string;

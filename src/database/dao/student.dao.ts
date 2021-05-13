@@ -23,7 +23,7 @@ export class StudentDao extends MongoDao{
     crate(student: IStudent) {
         student.createTime = Date.now();
         student.updateTime = Date.now();
-        return this.model.create(Student as any);
+        return this.model.create(student as any);
     }
 
     /**

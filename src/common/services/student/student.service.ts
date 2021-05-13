@@ -9,6 +9,9 @@ interface CreateStudentDto {
     // 创建人id
     openid: string;
 
+    // 英文名
+    englishName: string;
+
     studentID: string;
 }
 
@@ -22,11 +25,6 @@ export class StudentService {
      * @param createStudentDto
      */
     async create(createStudentDto: CreateStudentDto) {
-        const Student: IStudent = {
-            name: createStudentDto.name,
-            openid: createStudentDto.openid,
-            studentID: createStudentDto.studentID,
-        };
 
         return await this.studentDao.crate(createStudentDto);
     }

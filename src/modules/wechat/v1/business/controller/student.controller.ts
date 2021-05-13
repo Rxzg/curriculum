@@ -2,14 +2,15 @@ import {Body, Controller, Post, UseGuards, Put, Logger, Query, Get, Delete} from
 import {WeChatAuthGuard} from "../../../../../common/services/verify/wechatAuth.guard";
 import {IStudent, IUser} from "../../../../../common/interfaces/metaData";
 import {StudentService} from "../../../../../common/services/student/student.service";
+import {genStudentID} from "../../../../../utils/student";
 
 interface StudentDto {
     name: string;
-    studentID: string;
+    englishName: string;
 }
 
 @Controller('/wechat/student')
-@UseGuards(WeChatAuthGuard)
+// @UseGuards(WeChatAuthGuard)
 export class StudentController {
     logger: Logger = new Logger(StudentController.name);
     constructor(private studentService: StudentService) {
@@ -26,11 +27,18 @@ export class StudentController {
     async addStudent(@Body() {user, student}:
                       {user: IUser, student: StudentDto}) {
         try {
-            if (await this.studentService.getStudentByStudentID(student.studentID)) {
-                return {code: 2, message: '学生学号已经存在'};
+            let studentID = genStudentID();
+            while (!!(await this.studentService.getStudentByStudentID(studentID))) {
+                studentID = genStudentID();
             }
 
-            await this.studentService.create({studentID: student.studentID, name: student.name, openid: user.openid});
+
+            await this.studentService.create({
+                studentID: studentID,
+                name: student.name,
+                openid: user.openid,
+                englishName: student.englishName
+            });
 
             return {code: 1};
         } catch (e) {
