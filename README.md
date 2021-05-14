@@ -531,7 +531,7 @@
 <h3 id="24.5">获取一页学生</h3>
 ```js
     # 方法/路径
-    PUT  /v1/wechat/student/more?"page=<第几页>":
+    GET  /v1/wechat/student/more?"page=<第几页>":
 
     # 返回包
     200/OK 
