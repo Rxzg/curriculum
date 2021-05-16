@@ -67,4 +67,13 @@ export class StudentService {
         // 所有数据
         return {students, count};
     }
+
+
+    /**
+     * 获取该openid下所有学生
+     * @param openid
+     */
+    async getAllStudentsByOpenid(openid: string) {
+        return this.studentDao.getAllByOpenid(openid);
+    }
 }

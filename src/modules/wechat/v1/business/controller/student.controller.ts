@@ -27,6 +27,10 @@ export class StudentController {
     async addStudent(@Body() {user, student}:
                       {user: IUser, student: StudentDto}) {
         try {
+            if (!student.name) {
+                return {code: 2, message: '学生名字不能为空'};
+            }
+
             let studentID = genStudentID();
             while (!!(await this.studentService.getStudentByStudentID(studentID))) {
                 studentID = genStudentID();
@@ -134,6 +138,22 @@ export class StudentController {
             await this.studentService.removeStudent(studentID);
 
             return {code: 1}
+        } catch (e) {
+            this.logger.error(`${JSON.stringify(e)}`);
+            return {code: 2, message: '修改一个学生失败'};
+        }
+    }
+
+    /**
+     * 获取该openid下的所有学生
+     * @param openid
+     */
+    @Get('/all')
+    async getStudentsByOpenid(@Query() {openid}: {openid: string}) {
+        try {
+            const students = await this.studentService.getAllStudentsByOpenid(openid);
+
+            return {code: 1, students}
         } catch (e) {
             this.logger.error(`${JSON.stringify(e)}`);
             return {code: 2, message: '修改一个学生失败'};

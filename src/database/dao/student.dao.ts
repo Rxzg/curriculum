@@ -81,4 +81,8 @@ export class StudentDao extends MongoDao{
     getStudentsCount(where: {[key in keyof IStudent]: any} | {}) {
         return this.model.find(where).countDocuments();
     }
+
+    getAllByOpenid(openid: string) {
+        return this.model.find({openid});
+    }
 }

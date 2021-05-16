@@ -24,6 +24,15 @@ export class CourseController {
     async addCourse(@Body() {user, name, startTime, endTime, duration, studentID}:
                             {user: IUser, name: string, startTime: number, endTime: number, duration: number, studentID: string}) {
         try {
+            if (!name) {
+                return {code: 2, message: '学生名字不能为空'}
+            }
+
+            if (!studentID) {
+                return {code: 2, message: '学号不能为空'}
+            }
+
+
             const course = await this.courseService.createCourse({name, startTime, endTime, duration, openid: user.openid, studentID});
 
             return {code: 1, id: course._id};
