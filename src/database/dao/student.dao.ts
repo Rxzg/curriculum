@@ -83,6 +83,6 @@ export class StudentDao extends MongoDao{
     }
 
     getAllByOpenid(openid: string) {
-        return this.model.find({openid});
+        return this.model.find({openid}).sort({createTime: -1});
     }
 }
