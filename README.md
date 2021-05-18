@@ -497,8 +497,6 @@
     
     # 请求包
     {
-        # 名字
-        name: string;
         # 学生
         student: Student;
     }
