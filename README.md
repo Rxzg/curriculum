@@ -109,8 +109,10 @@
     {
         # 课程id
         id: string;
-        # 老师名字
+        # 学生名字
         name: string;
+        # 学号
+        studentID: string;
         # 开始时间
         startTime: number;
         # 结束时间

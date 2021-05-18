@@ -50,10 +50,11 @@ export class CourseController {
      * @param endTime 结束时间
      * @param duration 时长
      * @param id 课程id
+     * @param studentID 学号
      */
     @Put()
-    async updateOneCourse(@Body() {user, name, startTime, endTime, duration, id}:
-                          {user: IUser, name: string, startTime: number, endTime: number, duration: number, id: string}) {
+    async updateOneCourse(@Body() {user, name, startTime, endTime, duration, id, studentID}:
+                          {user: IUser, name: string, startTime: number, endTime: number, duration: number, id: string, studentID: string}) {
         try {
             const course = await this.courseService.updateCourse(id, {name, startTime, endTime, duration, openid: user.openid});
 
