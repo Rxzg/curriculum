@@ -5,7 +5,7 @@ import {CourseService} from "../../../../../common/services/course/course.servic
 import {StudentService} from "../../../../../common/services/student/student.service";
 
 @Controller('/wechat/course')
-// @UseGuards(WeChatAuthGuard)
+@UseGuards(WeChatAuthGuard)
 export class CourseController {
     logger: Logger = new Logger(CourseController.name);
     constructor(private courseService: CourseService, private studentService: StudentService) {
