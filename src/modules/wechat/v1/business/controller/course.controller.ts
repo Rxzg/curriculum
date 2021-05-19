@@ -56,7 +56,7 @@ export class CourseController {
     async updateOneCourse(@Body() {user, name, startTime, endTime, duration, id, studentID}:
                           {user: IUser, name: string, startTime: number, endTime: number, duration: number, id: string, studentID: string}) {
         try {
-            const course = await this.courseService.updateCourse(id, {name, startTime, endTime, duration, openid: user.openid});
+            const course = await this.courseService.updateCourse(id, {name, startTime, endTime, duration, openid: user.openid, studentID});
 
             return {code: 1};
         } catch (e) {
