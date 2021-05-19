@@ -81,7 +81,7 @@ export class MemorandumController {
      * @param id
      */
     @Delete()
-    async deleteOneMemorandum(@Query() {id}: {id: string}) {
+    async deleteOneMemorandum(@Body() {id}: {id: string}) {
         try {
             const memorandum = await this.memorandumService.deleteOne(id);
 

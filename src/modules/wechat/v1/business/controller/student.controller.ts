@@ -123,7 +123,7 @@ export class StudentController {
      * @param studentID
      */
     @Delete()
-    async removeStudent(@Query() {openid, studentID}: {openid: string, studentID: string}) {
+    async removeStudent(@Body() {openid, studentID}: {openid: string, studentID: string}) {
         try {
             const _student = await this.studentService.getStudentByStudentID(studentID);
 

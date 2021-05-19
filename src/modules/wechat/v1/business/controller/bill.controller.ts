@@ -88,7 +88,7 @@ export class BillController {
      * @param id
      */
     @Delete()
-    async deleteOneBill(@Query() {id}: {id: string}) {
+    async deleteOneBill(@Body() {id}: {id: string}) {
         try {
             const bill = await this.billService.deleteOne(id);
 

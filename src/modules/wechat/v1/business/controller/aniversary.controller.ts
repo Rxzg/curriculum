@@ -92,7 +92,7 @@ export class AnniversaryController {
      * @param id
      */
     @Delete()
-    async deleteOneAnniversary(@Query() {id}: { id: string }) {
+    async deleteOneAnniversary(@Body() {id}: { id: string }) {
         try {
             const anniversary = await this.anniversaryService.deleteOne(id);
 

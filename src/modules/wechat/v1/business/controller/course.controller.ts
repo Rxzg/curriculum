@@ -5,7 +5,7 @@ import {CourseService} from "../../../../../common/services/course/course.servic
 import {StudentService} from "../../../../../common/services/student/student.service";
 
 @Controller('/wechat/course')
-@UseGuards(WeChatAuthGuard)
+// @UseGuards(WeChatAuthGuard)
 export class CourseController {
     logger: Logger = new Logger(CourseController.name);
     constructor(private courseService: CourseService, private studentService: StudentService) {
@@ -70,7 +70,7 @@ export class CourseController {
      * @param id
      */
     @Delete()
-    async deleteOneCourse(@Query() {id}: {id: string}) {
+    async deleteOneCourse(@Body() {id}: {id: string}) {
         try {
             const course = await this.courseService.deleteOne(id);
 
