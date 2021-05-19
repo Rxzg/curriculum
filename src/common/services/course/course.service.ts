@@ -45,12 +45,14 @@ export class CourseService {
     }
 
     /**
-     * 获取一周的课程表
+     * 获取限定时间课程表
      * @param openid
      * @param start
      * @param end
      */
-    getWeeklyCurriculum(openid: string, start: number, end: number) {
+    getCurriculum(openid: string, start: number, end?: number) {
         return this.courseDao.getSortedCourses(openid, start, end);
     }
+
+    getStart
 }

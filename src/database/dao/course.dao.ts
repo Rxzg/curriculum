@@ -56,7 +56,12 @@ export class CourseDao extends MongoDao{
      * @param end
      */
     getSortedCourses(openid: string, start: number, end: number) {
-        return this.model.find({openid, startTime: {$gt: start, $lt: end}})
+        let startTime = {$gt: start};
+        if (end !== undefined) {
+            startTime["$lt"] = end;
+        }
+
+        return this.model.find({openid, startTime})
             .sort({startTime: 1})
             .exec();
     }

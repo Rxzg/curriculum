@@ -87,7 +87,7 @@ export class CourseController {
             const start = parseInt(startTime as string);
             const end = parseInt(endTime as string);
             this.logger.warn(`开始时间: ${start}, 结束时间: ${end}`);
-            return {code: 1, curriculum: await this.courseService.getWeeklyCurriculum(openid, start, end)};
+            return {code: 1, curriculum: await this.courseService.getCurriculum(openid, start, end)};
         } catch (e) {
             this.logger.error(`${JSON.stringify(e)}`);
             return {code: 2, message: '获取一周的课程失败'};

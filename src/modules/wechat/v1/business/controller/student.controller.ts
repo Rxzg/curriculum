@@ -3,6 +3,7 @@ import {WeChatAuthGuard} from "../../../../../common/services/verify/wechatAuth.
 import {IStudent, IUser} from "../../../../../common/interfaces/metaData";
 import {StudentService} from "../../../../../common/services/student/student.service";
 import {genStudentID} from "../../../../../utils/student";
+import {CourseService} from "../../../../../common/services/course/course.service";
 
 interface StudentDto {
     name: string;
@@ -13,7 +14,7 @@ interface StudentDto {
 @UseGuards(WeChatAuthGuard)
 export class StudentController {
     logger: Logger = new Logger(StudentController.name);
-    constructor(private studentService: StudentService) {
+    constructor(private studentService: StudentService, private courseService: CourseService) {
     }
 
 
@@ -133,6 +134,12 @@ export class StudentController {
 
             if (_student.openid !== user.openid) {
                 return {code: 2, message: '这不是你的学生，你无权删除'};
+            }
+
+            const courses = await this.courseService.getCurriculum(user.openid, Date.now());
+
+            if (courses.length > 0) {
+                return {code: 2, message: `该学生还有${courses.length}节课程, 请删除课程后再删除学生`};
             }
 
             await this.studentService.removeStudent(studentID);
