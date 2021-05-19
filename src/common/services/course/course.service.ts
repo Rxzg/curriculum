@@ -54,5 +54,14 @@ export class CourseService {
         return this.courseDao.getSortedCourses(openid, start, end);
     }
 
-    getStart
+    /**
+     * 获取这个学生的课程表
+     * @param openid
+     * @param studentID
+     * @param start
+     * @param end
+     */
+    getCurriculumByStudentID(openid: string, studentID: string, start: number, end?: number) {
+        return this.courseDao.getStudentCurriculum(openid, studentID, start, end);
+    }
 }

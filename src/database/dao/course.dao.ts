@@ -67,6 +67,24 @@ export class CourseDao extends MongoDao{
     }
 
     /**
+     * 获取所属老师下指定学生的课程表
+     * @param openid 老师的id
+     * @param start 开始时间
+     * @param end 结束时间
+     * @param studentID
+     */
+    getStudentCurriculum(openid: string, studentID: string, start: number, end: number) {
+        let startTime = {$gt: start};
+        if (end !== undefined) {
+            startTime["$lt"] = end;
+        }
+
+        return this.model.find({openid, studentID, startTime})
+            .sort({startTime: 1})
+            .exec();
+    }
+
+    /**
      * 移除一些课程
      * @param where
      */
