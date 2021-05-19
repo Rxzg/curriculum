@@ -10,7 +10,7 @@ interface StudentDto {
 }
 
 @Controller('/wechat/student')
-@UseGuards(WeChatAuthGuard)
+// @UseGuards(WeChatAuthGuard)
 export class StudentController {
     logger: Logger = new Logger(StudentController.name);
     constructor(private studentService: StudentService) {
@@ -46,7 +46,7 @@ export class StudentController {
 
             return {code: 1, student: _student};
         } catch (e) {
-            this.logger.error(`${JSON.stringify(e)}`);
+            this.logger.error(`${JSON.stringify(e.stack)}`);
             return {code: 2, message: '添加一个学生失败'};
         }
     }
