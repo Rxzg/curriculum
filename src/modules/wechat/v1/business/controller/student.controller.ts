@@ -123,7 +123,7 @@ export class StudentController {
      * @param studentID
      */
     @Delete()
-    async removeStudent(@Body() {openid, studentID}: {openid: string, studentID: string}) {
+    async removeStudent(@Body() {user, studentID}: {user: IUser, studentID: string}) {
         try {
             const _student = await this.studentService.getStudentByStudentID(studentID);
 
@@ -131,7 +131,7 @@ export class StudentController {
                 return {code: 2, message: '学生不存在，请检查学号'};
             }
 
-            if (_student.openid !== openid) {
+            if (_student.openid !== user.openid) {
                 return {code: 2, message: '这不是你的学生，你无权删除'};
             }
 

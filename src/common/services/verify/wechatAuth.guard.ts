@@ -59,9 +59,9 @@ export class WeChatAuthGuard implements CanActivate{
      * @param user
      */
     private bindAccount(request, user: IUser) {
-        if (request.method === 'GET' || request.method === 'DELETE') {
+        if (request.method === 'GET') {
             request.query.openid = user.openid;
-        } else if (request.method === 'POST' || request.method === 'PUT') {
+        } else if (request.method === 'POST' || request.method === 'PUT' || request.method === 'DELETE') {
             request.body.user = user;
         }
     }
