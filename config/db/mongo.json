@@ -1,16 +1,7 @@
 {
-  "development": {
-    "host": "127.0.0.1",
-    "port": 27019,
-    "db": "op",
-    "user": "",
-    "password": ""
-  },
-  "production": {
-    "host": "127.0.0.1",
-    "port": 27019,
-    "db": "op",
-    "user": "",
-    "password": "vasdfwwd"
-  }
+  "host": "127.0.0.1",
+  "port": 27019,
+  "db": "op",
+  "user": "",
+  "password": ""
 }
