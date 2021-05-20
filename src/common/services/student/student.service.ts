@@ -1,7 +1,8 @@
 import {Injectable} from "@nestjs/common";
-import {StudentDao} from "../../../database/dao/Student.dao";
+import {StudentDao} from "../../../database/dao/student.dao";
 import {IStudent} from "../../interfaces/metaData";
 
+// git clone -b main https://github.com/Rxzg/curriculum /data/transit/app
 interface CreateStudentDto {
     // 学生名字
     name: string;
